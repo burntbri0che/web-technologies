@@ -1,18 +1,31 @@
 
 .canvas {
     
-    size: 7in 9.25in;
-    margin: 27mm 16mm 27mm 16mm;
+   margin:0 auto;
+   height: 100%;
+
+
     
     
 }
 
-.left-side {
 
-    float:left
-    width 30%;
+.left-side{
+    
+    display:flex;
+    width: 30%;
+    float: left;
+    background-color: #997905;
 
 }
+
+.right-side {
+
+    display: flex;
+    width:65%;
+    float: right;
+}
+
 
 
 
@@ -22,6 +35,11 @@
 
     height: 6rem;
     width: 6rem;
-    padding-left: 3rem;
+    padding-left: 4rem;
+}
+
+.my-name {
+
+    padding-left: 1rem;
 }
 
