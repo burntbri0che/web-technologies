@@ -29,8 +29,8 @@ body{
 
 .canvas .left-side{
     position: relative;
-    background: #167266;
     padding: 40px;
+    background-image: linear-gradient(to right, #0a1c38, #002438, #00282b, #002a1a, #202a0c);
 }
 
 .profile{
@@ -51,11 +51,16 @@ body{
 }
 
 .profile h2{
-    color: black;
+    color: #c4c3be;
     font-size: 1.5em;
     padding-top: 20px;
     text-transform: uppercase;
     text-align: center;
     font-weight: 600;
-    line-height: 1.4;
+    line-height: 1.4em;
+}
+
+.profile h2 span{
+    font-size: 0.700em;
+    font-weight: 300;
 }
