@@ -27,6 +27,12 @@ body{
 
 }
 
+.canvas .left-side{
+    position: relative;
+    background: #167266;
+    padding: 40px;
+}
+
 .profile{
     position: relative;
     display: flex;
@@ -38,6 +44,18 @@ body{
 }
 
 .img{
+
+    position: realtive;
     height: 10rem;
     width: 10rem;
+}
+
+.profile h2{
+    color: black;
+    font-size: 1.5em;
+    padding-top: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.4;
 }
