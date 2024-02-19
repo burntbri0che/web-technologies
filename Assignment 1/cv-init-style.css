@@ -1,45 +1,28 @@
+*{
 
-.canvas {
-    
-   margin:0 auto;
-   height: 100%;
-
-
-    
-    
-}
-
-
-.left-side{
-    
-    display:flex;
-    width: 30%;
-    float: left;
-    background-color: #997905;
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: sans-serif;
 
 }
 
-.right-side {
-
+body{
+    background: lightslategray;
     display: flex;
-    width:65%;
-    float: right;
+    justify-content: center;
+    align-items: center;
 }
 
+.canvas{
+    position: relative;
+    width: 100%;
+    min-width: 1000px;
+    min-height: 1000px;
+    background: #fff;
+    margin: 50px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    box-shadow: 0 35px 55px rgba(0,0,0,0.2);
 
-
-
-
-
-.prof-img {
-
-    height: 6rem;
-    width: 6rem;
-    padding-left: 4rem;
 }
-
-.my-name {
-
-    padding-left: 1rem;
-}
-
