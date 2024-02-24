@@ -1,11 +1,4 @@
-*{
 
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-
-}
 
 body{
     background: lightslategray;
@@ -31,6 +24,12 @@ body{
     position: relative;
     padding: 40px;
     background-image: linear-gradient(to right, #0a1c38, #002438, #00282b, #002a1a, #202a0c);
+}
+
+.canvas .right-side{
+    position: relative;
+    background-color: #fff;
+    padding: 40px;
 }
 
 .profile{
@@ -120,4 +119,64 @@ body{
 
     color: #c4c3be;
     font-weight: 500;
+}
+
+
+.about{
+    margin-bottom: 50px;
+}
+
+.title2{
+
+    color: #00282b;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+
+}
+
+p{
+    color: #333;
+
+}
+
+
+.about .skill-box{
+    display: flex;
+    flex-direction: row;
+    margin:  20px 0;
+}
+
+.about .skill-box .year{
+    min-width: 150px;
+
+}
+
+.about .skill-box .year h5{
+    text-transform: uppercase;
+    color: #00282b;
+    font-weight: 600;
+}
+
+.about .skill-box .role{
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 16px;
+}
+
+
+.skills .skill-box{
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.skills .skill-box h4{
+    text-transform: uppercase;
+    color: #848c90;
+    font-weight: 500;
+    
 }
