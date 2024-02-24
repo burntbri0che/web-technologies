@@ -106,3 +106,18 @@ body{
     width: 40px;
     
 }
+
+.education li{
+    margin-bottom: 15px;
+}
+
+.education h5{
+    color: #c4c3be;
+    font-weight: 500;
+}
+
+.education h4{
+
+    color: #c4c3be;
+    font-weight: 500;
+}
