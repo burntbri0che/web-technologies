@@ -14,6 +14,18 @@
       $(doBindings);
 
       function formSubmission(event){
+        let firstName = document.getElementById("firstName");
+        let lastName = document.getElementById("lastName");
+        let email = document.getElementById("email");
+        let mesasge = document.getElementById("message");
+
+        if(firstName.value && email.value && message.value){
+          console.log("Form is valid!!");
+        }
+        else{
+          event.preventDefault();
+          
+        }
 
       }
 

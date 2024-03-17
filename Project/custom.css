@@ -1,25 +1,17 @@
-:root {
-    --primary-color: #205896 !important; 
-    --secondary-color: #C9BEAB !important; 
+
+.navbar-brand {
+    font-size: 1.5em;
+    color: #205896 !important;
+}
+
+.hero-section {
+    background-color: #F2E9E4;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #C9BEAB;
+    border-color: #C9BEAB;
 }
 
 
-
-
-@font-face {
-    font-family: 'Shirkhand-Regular' !important;
-    src: url('Project/Shrikhand-Regular.ttf') format('ttf') !important;
-    font-weight: normal !important;
-    font-style: normal !important;
-}
-
-
-body {
-    font-family: 'Shirkhand-Regular', sans-serif;
-}
-
-
-.navbar-nav .nav-link {
-    font-size: 1.5rem; /* Adjusted font size */
-    margin-right: 1rem;
-  }
