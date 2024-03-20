@@ -1,9 +1,8 @@
-@font-face {
-    font-family: Shirkhand;
-    src: url('Shrikhand-Regular.ttf');
+@import url('https://fonts.googleapis.com/css2?family=Finlandica:ital,wght@0,400..700;1,400..700&display=swap');
+
+body{
+  font-family: Finlandica;
 }
-
-
 
 .navbar-brand {
     font-size: 1.5em;
@@ -83,4 +82,10 @@
   .btn-template:hover {
     background-color: #0b5ed7; 
     color: white; 
+  }
+
+
+  .top-icons{
+    width: 70px;
+    height: 70px;
   }
