@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story CRUD Operations</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="ajax.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">NoteIT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../Project/landing-page.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My Notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Assingment 2/contact-form.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Lab Task 2/ajax.html">CRUD Operations</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      </nav>
+
+
+      <header class="hero-section">
+        <div class="container text-center py-5">
+            <h1>CRUD Operations!</h1>
+            <p>Data being shown, created, deleted and updated using an API.</p>
+        </div>
+      </header>
+
+    
+
+<div class="container mt-5">
+    <h2 class="mb-4">Story CRUD Operations</h2>
+
+    <!-- Create Form -->
+    <form id="createForm">
+        <div class="form-group">
+            <label for="createTitle">Title:</label>
+            <input type="text" class="form-control" id="createTitle" required value="new story">
+        </div>
+        <div class="form-group">
+            <label for="createContent">Content:</label>
+            <textarea class="form-control" id="createContent" rows="3" required>New Story Content</textarea>
+        </div>
+        <button id="createBtn" type="submit" class="btn btn-primary">Create</button>
+        <button id="clearBtn" type="submit" class="btn btn-primary" style="display: none;">Clear</button>
+    </form>
+
+    <hr>
+
+    <!-- Display Stories -->
+    <div id="storiesList"></div>
+
+</div>
+
+<!-- Include jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="./jqcrud.js"></script>
+
+
+</body>
+</html>
