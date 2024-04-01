@@ -9,12 +9,27 @@
     <link rel="stylesheet" href="mid.css">
   </head>
   <script>
-    
+    $(document).ready(function() {
+      $('.card-img-top').on('mouseenter', function() {
+          var imageName = $(this).attr('src');
+          var displayText = $('<div>').text(imageName).addClass('image-name-display').css('color', 'white');
+          if ($('.image-name-display').length === 0) {
+            $('.navbar-brand').after(displayText);
+          } else {
+            $('.image-name-display').text(imageName).css('color', 'white');
+          }
+      }).on('mouseleave', function() {
+          $('.image-name-display').text('');
+      });
+    });
   </script>
+  
+  
   <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
           <a class="navbar-brand" href="#">Logo</a>
+          <div id="image-source-name"></div>
           <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
             </ul>
@@ -265,7 +280,7 @@
       </div>
 
 
-      <footer class="footer mt-auto py-3 bg-light">
+      <footer class="footer mt-auto py-3">
         <div class="container">
           <div class="row">
             <div class="col">
@@ -286,7 +301,7 @@
               <div class="footer-section">
                 <div class="footer-heading">MORE</div>
                 <a href="#" class="footer-link d-block">Schedule</a>
-                <a href="#" class="footer-link d-block">Geo Talent</a>
+                <a href="#" class="footer-link d-block">Podcasts</a>
                 
               </div>
             </div>
