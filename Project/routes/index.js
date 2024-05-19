@@ -13,4 +13,14 @@ router.get("/ajax", (req, res) => {
     res.render("ajax");
 });
 
+
+router.get("/auth/login", (req, res) => {
+    res.render("auth/login");
+});
+
+router.get("/auth/register", (req, res) => {
+    res.render("auth/register");
+});
+
+
 module.exports = router;
