@@ -77,13 +77,12 @@ router.post("/auth/register", async (req, res) => {
                 type: "danger",
                 message: "User already exists"
             };
-            //return res.redirect("/auth/register");
+            return res.redirect("/auth/register");
         }
         newUser = new User({
             userName: req.body.userName,
             email: req.body.email,
             password: req.body.password
-            
         });
         await newUser.save();
         res.redirect("/auth/login?message=Registration successful. Please log in");
