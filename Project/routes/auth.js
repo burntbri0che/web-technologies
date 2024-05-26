@@ -2,9 +2,7 @@
 // let router = express.Router();
 // let User = require("../models/User");
 
-// router.get("/auth/register", (req,res) => {
-//     res.render("auth/register");
-// });
+
 
 
 // router.post("/auth/register", async (req, res) => {
@@ -29,9 +27,7 @@
 // // });
 
 
-// router.get("/auth/login", (req, res) => {
-//     res.render("auth/login");
-//   });
+
 
 
 
@@ -58,61 +54,84 @@
 
 
 const express = require("express");
+const bcrypt = require("bcryptjs");
 const router = express.Router();
 const User = require("../models/User");
 
 
-router.get("/auth/register", (req, res) => {
-    res.render("auth/register", { message: req.query.message });
-});
-
-
-router.post("/auth/register", async (req, res) => {
-
-    try {
-        let user = await User.findOne({ email: req.body.email });
-        if (user) {
-
-            req.session.flash = {
-                type: "danger",
-                message: "User already exists"
-            };
-            return res.redirect("/auth/register");
-        }
-        newUser = new User({
-            userName: req.body.userName,
-            email: req.body.email,
-            password: req.body.password
-        });
-        await newUser.save();
-        res.redirect("/auth/login?message=Registration successful. Please log in");
-    } catch (error) {
-        console.error("Registration Error:", error);
-        res.redirect("/auth/register?message=An error occurred during registration");
-    }
+router.get("/auth/register", (req,res) => {
+    res.render("auth/register");
 });
 
 
 router.get("/auth/login", (req, res) => {
-    res.render("auth/login", { message: req.query.message });
-});
+    res.render("auth/login");
+  });
 
 
-router.post("/auth/login", async (req, res) => {
+
+router.get("/auth/logout", (req, res) => {
+    req.session.user = null;
+    res.flash("success", "Logged out Successfully");
+    res.redirect("/login");
+  });
+
+
+
+// Registration Route
+router.post("/auth/register", async (req, res) => {
     try {
-        let user = await User.findOne({ email: req.body.email });
-        if (!user) {
-            return res.redirect("/auth/login?message=No account found with that email");
+        const { email, userName, password } = req.body;
+        const userExists = await User.findOne({ email: email });
+
+        if (userExists) {
+            res.flash('danger', 'User already exists with that email');
+            return res.redirect("/auth/register");
         }
-        if (user.password !== req.body.password) {
-            return res.redirect("/auth/login?message=Invalid password");
-        }
-        req.session.user = user; 
-        res.redirect("/");  
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({
+            userName: userName,
+            email: email,
+            password: hashedPassword
+        });
+        await newUser.save();
+
+        res.flash('success', 'Registration successful. Please log in.');
+        res.redirect("/auth/login");
     } catch (error) {
-        console.error("Login Error:", error);
-        res.redirect("/auth/login?message=An error occurred during login");
+        console.error("Registration Error:", error);
+        res.flash('danger', 'An error occurred during registration');
+        res.redirect("/auth/register");
     }
 });
+
+// Login Route
+router.post("/auth/login", async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email: email });
+
+        if (!user) {
+            res.flash('danger', 'No account found with that email');
+            return res.redirect("/auth/login");
+        }
+
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) {
+            res.flash('danger', 'Invalid password');
+            return res.redirect("/auth/login");
+        }
+
+        req.session.user = user;
+        res.flash('success', 'Logged in successfully');
+        res.redirect("/");
+    } catch (error) {
+        console.error("Login Error:", error);
+        res.flash('danger', 'An error occurred during login');
+        res.redirect("/auth/login");
+    }
+});
+
 
 module.exports = router;

@@ -23,7 +23,7 @@ $(document).ready(function() {
             data: $(this).serialize(),
             success: function() {
                 fetchNotes();
-                $('#noteInput').val(''); // Clear the input after saving
+                $('#noteInput').val(''); 
             },
             error: function() {
                 console.error("Error saving note");
@@ -31,5 +31,5 @@ $(document).ready(function() {
         });
     });
 
-    fetchNotes(); // Initial fetch of notes
+    fetchNotes(); 
 });

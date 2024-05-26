@@ -41,15 +41,21 @@
             </div>
         </div>
     </nav>
+
+    <% if (flash) { %>
+        <div class="alert alert-<%-flash.type%>">
+           <%= flash.message %>
+       </div>
+       <% } %>
+    
+    
+
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title text-center">Login to Your Account</h3>
-                        <% if (message) { %>
-                            <div style="color: red; font-weight: bold;"><%= message %></div>
-                        <% } %>
                         <form action="/auth/login" method="POST">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email address</label>

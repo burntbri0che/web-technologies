@@ -5,7 +5,10 @@ let userSchema = new mongoose.Schema({
     email: {type: String, required: true},
     password: {type: String, required: true},
     tasks: [String],
-    notes: [String]
+    notes: [{
+        title: { type: String, required: true },
+        body: { type: String, required: true }
+    }]
 })
 
 

@@ -59,7 +59,7 @@
     <div class="container mt-5">
         <h2 class="template-header">Your Notes</h2>
         <div id="notesDisplay" class="notes-container">
-            <!-- notes made here pleek -->
+            
         </div>
     </div>
 
@@ -71,45 +71,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            function fetchNotes() {
-                $.ajax({
-                    url: "/notes/all",
-                    method: "GET",
-                    success: function(notes) {
-                        $('#notesDisplay').empty();
-                        notes.forEach(function(note) {
-                            $('#notesDisplay').append('<div class="note-item mb-3"><p>' + note + '</p></div>');
-                        });
-                    },
-                    error: function() {
-                        console.error("Error loading notes");
-                    }
-                });
-            }
-
-            $('#noteForm').submit(function(event) {
-                event.preventDefault();
-                $.ajax({
-                    url: "/notes/add",
-                    method: "POST",
-                    data: $(this).serialize(),
-                    success: function() {
-                        fetchNotes();
-                        $('#noteInput').val(''); 
-                    },
-                    error: function() {
-                        console.error("Error saving note");
-                    }
-                });
-            });
-
-            fetchNotes(); 
-        });
-    </script>
-
-
+    <script src="/js/notescrud.js"></script>
 
 </body>
 </html>
