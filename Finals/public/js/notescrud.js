@@ -1,10 +1,12 @@
 $(document).ready(function() {
-    var currentPage = 1;  // Current page number
+    // var currentPage = 1;  // Current page number
 
     
-    function displayNotes() {
+    function displayNotes(searchQuery = '', page = 1) {
+        let url = `/notes/search?search=${encodeURIComponent(searchQuery)}&page=${page}&limit=6`;
+    
         $.ajax({
-            url: "/notes/all?page=" + currentPage + "&limit=6", 
+            url: url,
             method: "GET",
             dataType: "json",
             success: function(data) {
@@ -24,18 +26,17 @@ $(document).ready(function() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    `;
+                        `;
                     row.append(cardHtml);
-                    if ((index + 1) % 3 === 0) { 
+                    if ((index + 1) % 3 === 0) {
                         notesList.append(row);
                         row = $('<div class="row">');
                     }
                 });
                 if (data.notes.length % 3 !== 0) {
-                    notesList.append(row); 
+                    notesList.append(row);
                 }
-                updatePagination(data.totalPages); 
+                updatePagination(data.totalPages, page); 
             },
             error: function(error) {
                 console.error("Error fetching notes:", error);
@@ -43,19 +44,32 @@ $(document).ready(function() {
         });
     }
 
-    function updatePagination(totalPages) {
-        var pagination = $('#pagination');
-        pagination.empty(); 
-        for (let i = 1; i <= totalPages; i++) {
-            var pageItem = $(`<li class="page-item ${i === currentPage ? 'active' : ''}"><a class="page-link" href="#">${i}</a></li>`);
-            pageItem.on('click', function(e) {
-                e.preventDefault();
-                currentPage = i;
-                displayNotes(); 
-            });
-            pagination.append(pageItem);
-        }
+    $(document).on("click", "#pagination .page-link", function(e) {
+        e.preventDefault();
+        var selectedPage = $(this).text();
+        displayNotes($('#searchInput').val(), selectedPage);
+    });
+    
+
+    $('#searchButton').click(function() {
+        var searchQuery = $('#searchInput').val();
+        displayNotes(searchQuery); // Call to display notes with the search query
+    });
+
+    function updatePagination(totalPages, currentPage) {
+    var pagination = $('#pagination');
+    pagination.empty();
+    for (let i = 1; i <= totalPages; i++) {
+        var pageItem = $(`<li class="page-item ${i === currentPage ? 'active' : ''}"><a class="page-link" href="#">${i}</a></li>`);
+        pageItem.on('click', function(e) {
+            e.preventDefault();
+            currentPage = i;
+            displayNotes($('#searchInput').val()); // Pass the current search term
+        });
+        pagination.append(pageItem);
     }
+}
+
 
     displayNotes();
     

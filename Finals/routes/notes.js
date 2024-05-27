@@ -108,6 +108,64 @@ router.put('/notes/update/:noteId', async (req, res) => {
 });
 
 
+//finals ka kaam
+
+router.get('/notes/search', async (req, res) => {
+    const userId = req.session.user._id; // Assuming user ID is stored in session
+    const searchQuery = req.query.search; // Get the search term from query parameters
+
+    // Initialize search history in session if it doesn't exist
+    if (!req.session.searchHistory) {
+        req.session.searchHistory = [];
+    }
+
+    try {
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        // Store the current search query in session
+        req.session.searchHistory.push(searchQuery);
+        // Ensure the search history doesn't grow indefinitely (optional)
+        if (req.session.searchHistory.length > 10) { // keep last 10 searches
+            req.session.searchHistory.shift(); // Remove the oldest search query
+        }
+
+        // Filter notes by search query
+        let filteredNotes = user.notes.filter(note =>
+            note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            note.body.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        // Implement pagination (assumed to be implemented as before)
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 6;
+        const startIndex = (page - 1) * limit;
+        const endIndex = startIndex + limit;
+        const paginatedNotes = filteredNotes.slice(startIndex, endIndex);
+
+        res.json({
+            notes: paginatedNotes,
+            currentPage: page,
+            totalPages: Math.ceil(filteredNotes.length / limit)
+        });
+    } catch (error) {
+        console.error('Error searching notes:', error);
+        res.status(500).json({ message: 'Error searching notes', error });
+    }
+});
+
+
+
+router.get('/search-history', (req, res) => {
+    const searchHistory = req.session.searchHistory || [];
+    res.render('searchHistory', { searchHistory });
+});
+
+
+
+
 
 
 module.exports = router;
