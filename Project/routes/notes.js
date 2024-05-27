@@ -28,17 +28,17 @@ router.post('/notes/add', async (req, res) => {
 
 
 router.get('/notes/all', async (req, res) => {
-    const { page = 1, limit = 6 } = req.query;  // Default to page 1 and limit 6 if not provided
+    const { page = 1, limit = 6 } = req.query;  
     const userId = req.session.user._id;
 
     try {
         const user = await User.findById(userId);
-        // Calculate the starting index
+        
         const startIndex = (page - 1) * limit;
         const endIndex = page * limit;
 
-        const notes = user.notes.slice(startIndex, endIndex);  // Get the slice of notes for the page
-        const totalPages = Math.ceil(user.notes.length / limit);  // Calculate total pages
+        const notes = user.notes.slice(startIndex, endIndex);  
+        const totalPages = Math.ceil(user.notes.length / limit);  
 
         res.json({
             notes: notes,
@@ -75,7 +75,7 @@ router.get('/notes/get/:noteId', async (req, res) => {
 
     try {
         const user = await User.findById(userId);
-        const note = user.notes.id(noteId);  // Use Mongoose's id method to find subdocument
+        const note = user.notes.id(noteId);  
         if (!note) {
             return res.status(404).send("Note not found");
         }

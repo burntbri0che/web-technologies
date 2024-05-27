@@ -28,6 +28,7 @@ server.set("view engine", "ejs");
 server.use("/", router);
 server.use("/", require("./routes/auth"));
 server.use("/", require("./routes/notes"));
+server.use("/", require("./routes/tasks"));
 
 
 server.use(require("./middlewares/isAuthenticated"));
