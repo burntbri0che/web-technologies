@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story CRUD Operations</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/ajax.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">NoteIT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact-form">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/ajax">CRUD Operations</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                  <% if (user) { %>
+                    <li class="nav-item">
+                        <span class="navbar-text">Hello, <%= user.userName %></span>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/notes">My Notes</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/tasks">My Tasks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/logout">Logout</a>
+                    </li>
+                  <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/register">Sign Up</a>
+                    </li>
+                  <% } %>
+                </ul>
+            </div>
+        </div>
+      </nav>
+
+
+      <header class="hero-section">
+        <div class="container text-center py-5">
+            <h1>CRUD Operations!</h1>
+            <p>Data being shown, created, deleted and updated using an API.</p>
+        </div>
+      </header>
+
+    
+
+<div class="container mt-5">
+    <h2 class="mb-4">Story CRUD Operations</h2>
+
+    <!-- Create Form -->
+    <form id="createForm">
+        <div class="form-group">
+            <label for="createTitle">Title:</label>
+            <input type="text" class="form-control" id="createTitle" required value="new story">
+        </div>
+        <div class="form-group">
+            <label for="createContent">Content:</label>
+            <textarea class="form-control" id="createContent" rows="3" required>New Story Content</textarea>
+        </div>
+        <button id="createBtn" type="submit" class="btn btn-primary">Create</button>
+        <button id="clearBtn" type="submit" class="btn btn-primary" style="display: none;">Clear</button>
+    </form>
+
+    <hr>
+
+    <!-- Display Stories -->
+    <div id="storiesList"></div>
+
+</div>
+
+<footer class="footer bg-light">
+    <div class="container text-center py-3">
+      <p>&copy; 2024 NoteIT. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#" class="me-2"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="me-2"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="me-2"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+<!-- Include jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/js/jqcrud.js"></script>
+
+
+</body>
+</html>
