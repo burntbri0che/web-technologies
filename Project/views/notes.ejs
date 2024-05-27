@@ -48,12 +48,18 @@
             <p>Use the form below to add new notes to your personal collection.</p>
         </div>
         <form id="noteForm" action="/notes/add" method="POST">
+            <input type="hidden" id="noteId" name="noteId" value="">
+            <div class="mb-3">
+                <label for="noteTitle" class="form-label">Title</label>
+                <input type="text" class="form-control" id="noteTitle" name="title" required>
+            </div>
             <div class="mb-3">
                 <label for="noteInput" class="form-label">Your Note</label>
-                <textarea class="form-control" id="noteInput" name="note" rows="3" required></textarea>
+                <textarea class="form-control" id="noteInput" name="body" rows="3" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-template">Save Note</button>
         </form>
+        
     </div>
 
     <div class="container mt-5">
@@ -61,6 +67,12 @@
         <div id="notesDisplay" class="notes-container">
             
         </div>
+        <nav aria-label="Page navigation">
+            <ul id="pagination" class="pagination justify-content-center">
+                <!-- Pagination links will be dynamically added here by the JavaScript -->
+            </ul>
+        </nav>
+        
     </div>
 
     <footer class="footer mt-auto py-3">
